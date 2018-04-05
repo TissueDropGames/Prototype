@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Rope : MonoBehaviour {
 
-    public Rigidbody2D hook;
+    public Rigidbody hook;
 
     public GameObject linkPrefab;
 
@@ -12,28 +12,51 @@ public class Rope : MonoBehaviour {
 
     public int links = 7;
 
+    public List<GameObject> agoLinks;
+
+    private LineRenderer lrLine;
+    private int iVertexCount = 2;
+
     void Start () {
+        lrLine = GetComponent<LineRenderer>();
         GenerateRope();
     }
-	
 
+
+    void RenderLine()
+    {
+
+        lrLine.SetVertexCount(iVertexCount);
+
+        int i;
+        for (i = 0; i < agoLinks.Count; i++)
+        {
+
+            lrLine.SetPosition(i, agoLinks[i].transform.position);
+
+        }
+
+        lrLine.SetPosition(i, weigth.transform.position);
+
+    }
 
     void GenerateRope()
     {
-        Rigidbody2D previousRB = hook;
+        Rigidbody previousRB = hook;
         for (int i = 0; i < links; i++)
         {
             GameObject link = Instantiate(linkPrefab, transform);
-            HingeJoint2D joint = link.GetComponent<HingeJoint2D>();
+            agoLinks.Add(link);
+            HingeJoint joint = link.GetComponent<HingeJoint>();
             joint.connectedBody = previousRB;
 
             if (i < links - 1)
             {
-                previousRB = link.GetComponent<Rigidbody2D>();
+                previousRB = link.GetComponent<Rigidbody>();
             }
             else
             {
-                weigth.ConnectRopeEnd(link.GetComponent<Rigidbody2D>());
+                weigth.ConnectRopeEnd(link.GetComponent<Rigidbody>());
             }
 
 

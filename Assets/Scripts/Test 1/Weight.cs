@@ -5,9 +5,9 @@ using UnityEngine;
 public class Weight : MonoBehaviour {
     public float distanceFromChainEnd = 0.6f;
 
-    public void ConnectRopeEnd(Rigidbody2D endRB)
+    public void ConnectRopeEnd(Rigidbody endRB)
     {
-        HingeJoint2D joint = gameObject.AddComponent<HingeJoint2D>();
+        HingeJoint joint = gameObject.AddComponent<HingeJoint>();
         joint.autoConfigureConnectedAnchor = false;
         joint.connectedBody = endRB;
         joint.anchor = Vector2.zero;

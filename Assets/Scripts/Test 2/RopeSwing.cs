@@ -37,7 +37,7 @@ public class RopeSwing : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position = Vector2.MoveTowards(transform.position, destiny, speed);
+       // transform.position = Vector2.MoveTowards(transform.position, destiny, speed);
 
 
 
@@ -81,8 +81,7 @@ public class RopeSwing : MonoBehaviour {
         lr.SetVertexCount(vertexCount);
 
         int i;
-        for (i = 0; i < Nodes.Count; i++)
-        {
+        for (i = 0; i < Nodes.Count; i++){
 
             lr.SetPosition(i, Nodes[i].transform.position);
 
